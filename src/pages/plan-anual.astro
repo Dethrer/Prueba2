@@ -1,0 +1,116 @@
+---
+// src/pages/index.astro
+import '/src/styles/global.css'
+import Layout from '../layouts/Layout.astro';
+import planAnualPdf from '../assets/plan-anual-2025.pdf';
+import gfvd from '../assets/video1.gif';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<Header/>
+<Layout title="Plan Anual de Trabajo | I.E. José María Arguedas">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+    <main>
+    <!-- Sección de encabezado con imagen de fondo -->
+    <section class="relative h-64 flex items-center justify-center">
+      <!-- Imagen de fondo -->
+      <div class="absolute inset-0 w-full h-full">
+        <img 
+          src={gfvd.src} 
+          alt="" 
+          class="w-full h-full object-cover brightness-50"
+        />
+      </div>
+      
+      <!-- Título superpuesto -->
+      <div class="relative z-10 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white tracking-wide">
+          PLAN ANUAL DE<br />TRABAJO
+        </h1>
+      </div>
+    </section>
+    
+    <!-- Sección del visor de PDF -->
+    <section class="bg-gray-100 py-8">
+      <div class="container mx-auto px-4">
+        <!-- Marco del visor de PDF -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <!-- Visor de PDF embebido con protección contra descargas -->
+          <div class="relative w-full" style="padding-top: 141.4%"> <!-- Ratio para un documento A4 -->
+            <div class="absolute top-0 left-0 w-full h-full">
+              <!-- PDF con barra de herramientas desactivada -->
+              <iframe
+                src={planAnualPdf + "#toolbar=0&navpanes=0&scrollbar=0"}
+                class="absolute top-0 left-0 w-full h-full border-0"
+                id="pdfFrame"
+              ></iframe>
+              
+              <!-- Div simple para bloquear la parte superior -->
+              <div id="topBlocker" class="absolute top-0 left-0 w-full h-10 bg-transparent z-20"></div>
+              
+              <!-- Div vacío que cubre todo el PDF para bloquear clic derecho -->
+              <div id="fullOverlay" class="absolute top-0 left-0 w-full h-full z-10"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer/>
+</Layout>
+
+<script>
+  // Script para prevenir descargas e interacciones no deseadas
+  document.addEventListener('DOMContentLoaded', () => {
+    const fullOverlay = document.getElementById('fullOverlay');
+    
+    if (fullOverlay) {
+      // Prevenir clic derecho en el overlay completo
+      fullOverlay.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        return false;
+      });
+      
+      // Permitir desplazamiento pero bloquear otras interacciones
+      fullOverlay.addEventListener('wheel', (e) => {
+        // Permitir que el evento de rueda pase al PDF
+        e.stopPropagation();
+      }, { passive: true });
+      
+      // Asegurarse de que los clics normales pasen al PDF para poder desplazarse
+      fullOverlay.addEventListener('pointerdown', (e) => {
+        if (e.button === 0) { // Solo clic izquierdo
+          e.stopPropagation();
+        } else {
+          e.preventDefault();
+          return false;
+        }
+      });
+    }
+    
+    // Prevenir teclas para guardar o imprimir en toda la página
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey && (e.key === 's' || e.key === 'p'))) {
+        e.preventDefault();
+        return false;
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Estilo para el bloqueador superior */
+  #topBlocker {
+    pointer-events: auto;
+    cursor: default;
+  }
+  
+  /* Estilo para el overlay completo */
+  #fullOverlay {
+    pointer-events: auto;
+    background-color: transparent;
+    cursor: default;
+  }
+</style>
