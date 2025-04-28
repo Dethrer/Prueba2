@@ -1,7 +1,135 @@
 ---
-import  colegio from "../assets/Colegio.webp"
+const pageTitle = "Institución Educativa José María Arguedas";
+import titulo from "../assets/titulo.png";
+import insignia from "../assets/insignia.png";
+import visioncompartida from "../assets/visioncompartida.png";
+import vision from "../assets/visión.jpg";
+import gfvd from "../assets/video1.gif";
+import Header from "../components/Header.astro";
 ---
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{pageTitle}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .visit-counter {
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 0.875rem;
+        z-index: 50;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="relative shadow-md">
+        <div class="absolute inset-0 w-full h-full">
+            <img src={gfvd.src} alt="" class="w-full h-full object-cover" />
+            <!-- Capa semi-transparente para mejorar la legibilidad del contenido -->
+            <div class="absolute inset-0 bg-opacity-0"></div>
+        </div>
+        <div class="container relative mx-auto px-4 py-6 flex flex-col sm:flex-row justify-center items-center gap-4 z-10">
+            <img src={titulo.src} alt="Institución Educativa José María Arguedas" class="max-w-full h-auto" />
+            <img src={insignia.src} alt="Insignia de la Institución Educativa" class="max-h-20 w-auto" />
+        </div>
+    </header>
 
-	<img id="background" src={colegio.src} alt="Colegio" fetchpriority="high" />
-	<main>
-	</main>
+    <main>
+        <section class="bg-red-500 py-4">
+            <div class="container mx-auto px-4 text-white text-center font-semibold text-lg">
+                IDENTIDAD DE LA INSTITUCIÓN EDUCATIVA
+            </div>
+        </section>
+
+        <section class="bg-blue-900 container mx-auto px-4 py-8 flex flex-col md:flex-row items-center gap-8">
+            <div class="md:w-1/2">
+                <h2 class="text-xl font-semibold text-white mb-4">VISIÓN COMPARTIDA</h2>
+                <p class="text-white">
+                    "Para el 2028, consolidarnos como una Institución Educativa líder en la formación integral de estudiantes competentes, emprendedores, creativos, críticos, y solidarios en la región Junín y a nivel nacional; promoviendo el emprendimiento, investigación, innovación, arte, cultura y deporte; con docentes capacitados que dominan las áreas de la ciencia y la tecnología; consolidando su identidad, en la práctica constante de habilidades sociales y en los principios de inclusión, con estilos de vida saludables y conciencia ambiental; siendo el perfil del egreso el marco del quehacer pedagógico competente para garantizar la superación del Sistema Educativo Peruano".
+                </p>
+            </div>
+            <div class="md:w-1/2">
+                <img src={visioncompartida.src} alt="Visión Compartida" class="max-w-full h-auto rounded-lg shadow-md" />
+            </div>
+        </section>
+
+        <section class="bg-red-500 py-4">
+            <div class="container mx-auto px-4 text-white text-center font-semibold text-lg">
+                MISIÓN
+            </div>
+        </section>
+
+        <section class="bg-blue-900 container mx-auto  px-4 py-8 flex flex-col md:flex-row items-center gap-8">
+            <div class="md:w-1/2">
+                <img src={vision.src} alt="Misión" class="max-w-full w-auto rounded-lg shadow-md" />
+            </div>
+            <div class="md:w-1/2">
+                <h2 class="text-xl font-semibold text-white mb-4">MISIÓN</h2>
+                <p class="text-white">
+                    "Lograr que todas y todos nuestros estudiantes terminen el nivel secundaria, brindando una educación integral, de calidad e inclusiva; desarrollando competencias y modelos educativos, orientados al logro del perfil de egreso de los estudiantes del nivel secundaria en la Educación Básica Regular; con una moderna infraestructura y tecnología, aplicando estrategias didácticas de acuerdo con el contexto, calidad humana, convivencia saludable bajo un estado de derecho, valores, ética personal y profesional fundamentada en los compromisos de gestión escolar."
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2024 I.E. JOSÉ MARÍA ARGUEDAS. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Contador de visitas -->
+    <div id="visitCounter" class="visit-counter">
+        Visitas: <span id="count">0</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Configuración inicial para las imágenes
+            const imageElements = document.querySelectorAll('img');
+            imageElements.forEach(img => {
+                const imageName = img.getAttribute('src');
+                if (imageName === '/titulo.png') {
+                    img.classList.add('max-w-full', 'h-auto');
+                } else if (imageName === '/insignia.png') {
+                    img.classList.add('max-w-sm', 'h-auto');
+                } else if (imageName === '/vision-compartida.jpg' || imageName === '/vision.jpg') {
+                    img.classList.add('max-w-full', 'h-auto', 'rounded-lg', 'shadow-md');
+                }
+            });
+
+            // Lógica del contador de visitas
+            const countElement = document.getElementById('count');
+            
+            // Obtener el contador actual del localStorage
+            let visitCount = localStorage.getItem('visitCount');
+            
+            // Si no existe, inicializarlo en 0
+            if (!visitCount) {
+                visitCount = "0";
+            }
+            
+            // Incrementar el contador en 1 por cada visita
+            visitCount = (parseInt(visitCount) + 1).toString();
+            
+            // Guardar el nuevo valor en localStorage
+            localStorage.setItem('visitCount', visitCount.toString());
+            
+            // Mostrar el contador en la página
+            if (countElement) {
+                countElement.textContent = visitCount;
+            }
+        });
+    </script>
+</body>
+</html>

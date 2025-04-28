@@ -2,9 +2,90 @@
 import Header from "../components/Header.astro"
 import Layout from "../layouts/Layout.astro"
 ---
-<Layout>
 <header>
   <Header />
 </header>
-<h1>HOLA MUNDO</h1>
+
+<Layout title="Instrumentos de Gestión 2025 - Plataforma Documental">
+  <!-- Banner principal -->
+  <div class="relative h-64 bg-gradient-to-r from-blue-800 to-blue-600 overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="bg-[url('/imagenes/docentes-reunion.jpg')] bg-cover bg-center opacity-30 h-full w-full"></div>
+    </div>
+    <div class="relative z-10 flex items-center justify-center h-full">
+      <h1 class="text-5xl font-bold text-white tracking-wider text-center" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">
+        INSTRUMENTOS DE GESTIÓN 2025
+      </h1>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        
+        <!-- Columna de imágenes -->
+        <div class="space-y-6">
+          <div class="rounded-lg overflow-hidden shadow-xl">
+            <img 
+              src="/imagenes/plataforma-gestion.jpg" 
+              alt="Plataforma operativa de gestión escolar" 
+              class="w-full"
+            />
+          </div>
+          <div class="rounded-lg overflow-hidden shadow-xl">
+            <img 
+              src="/imagenes/capacitacion-docentes.jpg" 
+              alt="Capacitación docente" 
+              class="w-full"
+            />
+          </div>
+        </div>
+        
+        <!-- Columna de texto -->
+        <div class="text-white space-y-6">
+          <h2 class="text-3xl font-bold mb-6">ESTIMADOS DOCENTES</h2>
+          
+          <p class="text-lg">
+            Es un placer darles la bienvenida a nuestra nueva <span class="font-bold">Plataforma Documentos de Gestion</span>. 
+            Este espacio ha sido diseñado para mejorar la eficiencia y la organización en el manejo
+            de la documentación, facilitando el acceso, la colaboración y la seguridad en todos
+            nuestros procesos.
+          </p>
+          
+          <p class="text-lg">
+            Con esta herramienta, esperamos simplificar su trabajo diario, permitiéndoles
+            concentrarse en las tareas más importantes mientras la plataforma se encarga de la
+            gestión y el almacenamiento seguro de los documentos.
+          </p>
+          
+          <p class="text-lg">
+            Les invitamos a explorar todas las funcionalidades que ofrece y a aprovechar al
+            máximo sus capacidades. Nuestro equipo de soporte estará disponible para ayudarles
+            con cualquier duda o inconveniente que puedan tener durante el proceso de adaptación.
+          </p>
+          
+          <p class="text-lg">
+            Estamos convencidos de que esta plataforma será un recurso valioso para todos,
+            contribuyendo al éxito de nuestras operaciones y fortaleciendo nuestro compromiso
+            con la calidad y la eficiencia.
+          </p>
+          
+          <p class="text-xl font-bold mt-6">
+            ¡Bienvenidos a una nueva era en la Plataforma Documentos de Gestión!
+          </p>
+        </div>
+      </div>
+      
+      <!-- Botones de navegación -->
+      <div class="mt-12 grid grid-cols-2 gap-4 max-w-2xl mx-auto">
+        <a href="/calendarizacion" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded text-center transition duration-300 shadow-lg">
+          CALENDARIZACIÓN
+        </a>
+        <a href="/pei" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded text-center transition duration-300 shadow-lg">
+          PEI
+        </a>
+      </div>
+    </div>
+  </div>
 </Layout>
