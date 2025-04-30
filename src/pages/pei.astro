@@ -1,5 +1,36 @@
 ---
+// src/pages/mi-circulo.astro
+// Importamos el componente Header que creaste
 import Header from "../components/Header.astro";
+
+// Si no estás usando un Layout principal que incluya global.css,
+// podrías necesitar importar tus estilos globales aquí también,
+// aunque usualmente el Header o un Layout ya lo hacen.
+import '/src/styles/global.css';
 ---
-<Header/>
-<h1>Hola mundo</h1>
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Página con Círculo de Colores</title>
+    </head>
+  <body class="min-h-screen flex flex-col">
+    <Header/>
+
+    <main class="flex-grow container mx-auto px-4 py-8 flex flex-col items-center justify-center">
+      <h1 class="text-4xl font-bold mb-8">Hola mundo</h1>
+
+      <div class="flex justify-center items-center">
+        <div class="w-32 h-32 rounded-full bg-gradient-to-r from-blue-500 to-green-500 flex items-center justify-center text-white text-xs font-bold shadow-lg">
+          Círculo Astro
+        </div>
+      </div>
+
+      </main>
+
+    </body>
+</html>
