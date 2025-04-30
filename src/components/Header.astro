@@ -1,24 +1,28 @@
 ---
 // Header.astro
+// Importar estilos globales (asegúrate de que esta ruta sea correcta respecto a la raíz de tu proyecto)
 import '/src/styles/global.css'
+// Importar la imagen de la insignia
 import insignia from '../assets/insignia.png'
+
+// Obtener la ruta base configurada en astro.config.mjs
+// Esta variable contiene la ruta como '/Prueba2/' gracias a tu astro.config.mjs
+const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <header class="w-full bg-black text-white">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between">
-      <!-- Logo y nombre de la institución -->
       <div class="flex items-center py-3">
-        <a href="./" class="flex items-center">
+        <a href={BASE_URL} class="flex items-center">
           <img src={insignia.src} alt="Insignia José María Arguedas" class="w-12 h-12 mr-3" />
           <span class="text-xl font-bold">JOSE MARIA ARGUEDAS</span>
         </a>
       </div>
-      
-      <!-- Navegación principal (visible en desktop) -->
+
       <nav class="hidden md:flex items-center">
         <ul class="flex">
-          <li><a href="/" class="px-4 py-6 inline-block hover:bg-gray-800 transition-colors">Inicio</a></li>
+          <li><a href={BASE_URL} class="px-4 py-6 inline-block hover:bg-gray-800 transition-colors">Inicio</a></li>
           <li class="relative group">
             <button class="px-4 py-6 inline-block hover:bg-gray-800 transition-colors items-center">
               DOC GESTION
@@ -27,52 +31,50 @@ import insignia from '../assets/insignia.png'
               </svg>
             </button>
             <div class="absolute left-0 top-full hidden group-hover:block bg-gray-800 min-w-48 shadow-lg z-50">
-              <a href="/pei" class="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap">PEI</a>
-              <a href="../plan-anual" class="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap">PLAN ANUAL DE TRABAJO</a>
-              <a href="/calendarizacion" class="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap">CALENDARIZACIÓN</a>
-              <a href="/reglamento" class="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap">REGLAMENTO INTERNO</a>
-                <a href="/plan-gestion" class="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap">PLAN DE GESTIÓN</a>
+              <a href={BASE_URL + 'pei'} class="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap">PEI</a>
+              <a href={BASE_URL + 'plan-anual'} class="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap">PLAN ANUAL DE TRABAJO</a>
+              <a href={BASE_URL + 'calendarizacion'} class="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap">CALENDARIZACIÓN</a>
+              <a href={BASE_URL + 'reglamento'} class="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap">REGLAMENTO INTERNO</a>
+              <a href={BASE_URL + 'plan-gestion'} class="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap">PLAN DE GESTIÓN</a>
             </div>
           </li>
-          <li><a href="/atencion-ppff" class="px-4 py-6 inline-block hover:bg-gray-800 transition-colors">ATENCION PPFF</a></li>
-          <li><a href="/horarios" class="px-4 py-6 inline-block hover:bg-gray-800 transition-colors">HORARIOS</a></li>
+          <li><a href={BASE_URL + 'atencion-ppff'} class="px-4 py-6 inline-block hover:bg-gray-800 transition-colors">ATENCION PPFF</a></li>
+          <li><a href={BASE_URL + 'horarios'} class="px-4 py-6 inline-block hover:bg-gray-800 transition-colors">HORARIOS</a></li>
         </ul>
       </nav>
-      
-      <!-- Botón menú móvil -->
+
       <div class="md:hidden">
-        <button id="mobile-menu-button" class="text-white p-2">
+        <button id="mobile-menu-button" class="text-white p-2" aria-label="Toggle mobile menu">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
     </div>
-    
-    <!-- Menú móvil -->
+
     <div id="mobile-menu" class="hidden md:hidden pb-4">
       <nav>
         <ul class="flex flex-col">
-          <li><a href="/" class="block px-4 py-2 hover:bg-gray-800">Inicio</a></li>
+          <li><a href={BASE_URL} class="block px-4 py-2 hover:bg-gray-800">Inicio</a></li>
           <li>
             <div>
-              <button id="mobile-dropdown-btn" class="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-800">
+              <button id="mobile-dropdown-btn" class="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-800" aria-expanded="false">
                 <span>DOC GESTION</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 transition-transform duration-300">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               <div id="mobile-dropdown" class="hidden pl-4">
-                <a href="/pei" class="block px-4 py-2 hover:bg-gray-800">PEI</a>
-                <a href="/plan-anual" class="block px-4 py-2 hover:bg-gray-800">PLAN ANUAL DE TRABAJO</a>
-                <a href="/calendarizacion" class="block px-4 py-2 hover:bg-gray-800">CALENDARIZACIÓN</a>
-                <a href="/reglamento" class="block px-4 py-2 hover:bg-gray-800">REGLAMENTO INTERNO</a>
-                <a href="/plan-gestion" class="block px-4 py-2 hover:bg-gray-800">PLAN DE GESTIÓN</a>
+                 <a href={BASE_URL + 'pei'} class="block px-4 py-2 hover:bg-gray-800">PEI</a>
+                <a href={BASE_URL + 'plan-anual'} class="block px-4 py-2 hover:bg-gray-800">PLAN ANUAL DE TRABAJO</a>
+                <a href={BASE_URL + 'calendarizacion'} class="block px-4 py-2 hover:bg-gray-800">CALENDARIZACIÓN</a>
+                <a href={BASE_URL + 'reglamento'} class="block px-4 py-2 hover:bg-gray-800">REGLAMENTO INTERNO</a>
+                <a href={BASE_URL + 'plan-gestion'} class="block px-4 py-2 hover:bg-gray-800">PLAN DE GESTIÓN</a>
               </div>
             </div>
           </li>
-          <li><a href="/atencion-ppff" class="block px-4 py-2 hover:bg-gray-800">ATENCION PPFF</a></li>
-          <li><a href="/horarios" class="block px-4 py-2 hover:bg-gray-800">HORARIOS</a></li>
+          <li><a href={BASE_URL + 'atencion-ppff'} class="block px-4 py-2 hover:bg-gray-800">ATENCION PPFF</a></li>
+          <li><a href={BASE_URL + 'horarios'} class="block px-4 py-2 hover:bg-gray-800">HORARIOS</a></li>
         </ul>
       </nav>
     </div>
@@ -81,44 +83,95 @@ import insignia from '../assets/insignia.png'
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // Toggle menú móvil
+    // Obtener referencias a los elementos, usando encadenamiento opcional (?) para seguridad
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-    
-    // Toggle dropdown en móvil
     const mobileDropdownBtn = document.getElementById('mobile-dropdown-btn');
     const mobileDropdown = document.getElementById('mobile-dropdown');
-    
-    if (mobileDropdownBtn && mobileDropdown) {
-      mobileDropdownBtn.addEventListener('click', () => {
-        mobileDropdown.classList.toggle('hidden');
-        
-        // Rotar icono
-        const icon = mobileDropdownBtn.querySelector('svg');
-        if (icon) {
-          icon.style.transform = mobileDropdown.classList.contains('hidden') ? 
-            'rotate(0deg)' : 'rotate(180deg)';
-        }
-      });
-    }
-    
-    // Cerrar menú al hacer click fuera
-    document.addEventListener('click', (event) => {
-      const target = event.target as Element;
-      
-      if (mobileMenu && 
-          !mobileMenu.classList.contains('hidden') && 
-          !mobileMenu.contains(target) && 
-          mobileMenuButton && 
-          !mobileMenuButton.contains(target)) {
-        mobileMenu.classList.add('hidden');
+    // También obtenemos el icono del desplegable una vez
+    const dropdownIcon = mobileDropdownBtn?.querySelector('svg');
+
+    // Función para cerrar el menú desplegable y resetear su icono
+    const closeMobileDropdown = () => {
+      mobileDropdown?.classList.add('hidden');
+      if (dropdownIcon) {
+        dropdownIcon.style.transform = 'rotate(0deg)';
+        mobileDropdownBtn?.setAttribute('aria-expanded', 'false');
       }
+    };
+
+    // Función para cerrar el menú móvil principal
+    const closeMobileMenu = () => {
+      mobileMenu?.classList.add('hidden');
+      mobileMenuButton?.setAttribute('aria-expanded', 'false');
+      // Al cerrar el menú principal, también cerramos el desplegable
+      closeMobileDropdown();
+    };
+
+    // Toggle menú móvil (Hamburguesa)
+    mobileMenuButton?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('hidden');
+      const isMenuOpen = !mobileMenu?.classList.contains('hidden');
+      mobileMenuButton?.setAttribute('aria-expanded', isMenuOpen.toString()); // Accesibilidad
+
+      // Si el menú móvil se abre, aseguramos que el desplegable esté cerrado
+      if (isMenuOpen) {
+        closeMobileDropdown();
+      }
+    });
+
+    // Toggle menú desplegable en móvil
+    mobileDropdownBtn?.addEventListener('click', (event) => {
+      mobileDropdown?.classList.toggle('hidden');
+      const isDropdownOpen = !mobileDropdown?.classList.contains('hidden');
+      mobileDropdownBtn?.setAttribute('aria-expanded', isDropdownOpen.toString()); // Accesibilidad
+
+      // Rotar icono
+      if (dropdownIcon) {
+        dropdownIcon.style.transform = isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+      }
+      // Detener la propagación del evento para que no lo capture el listener del documento inmediatamente
+      event.stopPropagation();
+    });
+
+    // Cerrar menús al hacer click en un enlace del menú desplegable
+    const dropdownLinks = mobileDropdown?.querySelectorAll('a');
+    dropdownLinks?.forEach(link => {
+        link.addEventListener('click', () => {
+            // Cerrar ambos menús al hacer clic en un enlace
+            closeMobileDropdown();
+            closeMobileMenu(); // Cierra también el menú principal
+        });
+    });
+
+    // Cerrar menús al hacer click fuera de ellos
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+
+      // *** VERIFICACIÓN ADICIONAL: Asegurarse de que target sea un Node antes de usar .contains() ***
+      // Aunque event.target en un click debería serlo, esta verificación puede ayudar en casos raros.
+      if (!(target instanceof Node)) {
+         // Si target no es un Node, salimos del manejador de eventos para evitar el error
+         return;
+      }
+
+      // Si el menú móvil está abierto Y el clic no fue dentro del botón del menú O dentro del menú
+      if (mobileMenu && mobileMenuButton &&
+          !mobileMenu.classList.contains('hidden') &&
+          !mobileMenuButton.contains(target) &&
+          !mobileMenu.contains(target)) {
+            closeMobileMenu(); // Cierra el menú principal (y el desplegable)
+      }
+
+      // Si el menú desplegable está abierto Y el clic no fue dentro del botón del desplegable O dentro del desplegable
+      // Y además el menú principal está visible (para no intentar cerrar un desplegable invisible)
+       else if (mobileMenu && !mobileMenu.classList.contains('hidden') && // Asegura que el menú principal está abierto
+                mobileDropdown && mobileDropdownBtn &&
+                !mobileDropdown.classList.contains('hidden') && // Asegura que el desplegable está abierto
+                !mobileDropdownBtn.contains(target) &&
+                !mobileDropdown.contains(target)) {
+           closeMobileDropdown(); // Cierra solo el desplegable
+       }
     });
   });
 </script>
