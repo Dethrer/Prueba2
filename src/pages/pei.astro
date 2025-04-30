@@ -2,7 +2,7 @@
 // src/pages/mi-circulo.astro
 // Importamos el componente Header que creaste
 import Header from "../components/Header.astro";
-
+import Layout from "../layouts/Layout.astro";
 // Si no estás usando un Layout principal que incluya global.css,
 // podrías necesitar importar tus estilos globales aquí también,
 // aunque usualmente el Header o un Layout ya lo hacen.
@@ -20,7 +20,7 @@ import '/src/styles/global.css';
     </head>
   <body class="min-h-screen flex flex-col">
     <Header/>
-
+<Layout title="A ver">
     <main class="flex-grow container mx-auto px-4 py-8 flex flex-col items-center justify-center">
       <h1 class="text-4xl font-bold mb-8">Hola mundo</h1>
 
@@ -33,4 +33,5 @@ import '/src/styles/global.css';
       </main>
 
     </body>
+<Layout/>
 </html>
