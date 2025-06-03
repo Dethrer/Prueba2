@@ -6,6 +6,9 @@ import visioncompartida from "../assets/visioncompartida.webp";
 import vision from "../assets/visión.webp";
 import gfvd from "../assets/video1.gif";
 import Footer from "../components/Footer.astro";
+import fondo1 from "../assets/fondo-rojo1.webp";
+import fondo2 from "../assets/fondo-rojo2.webp";
+import fondo3 from "../assets/fondo-azul.webp";
 ---
 <html lang="es">
 <head>
@@ -45,13 +48,13 @@ import Footer from "../components/Footer.astro";
     </header>
 
     <main>
-        <section class="bg-red-500 py-4">
-            <div class="container mx-auto px-4 text-white text-center font-semibold text-lg">
+        <section class="bg-red-900 py-4">
+            <div class="container mx-auto px-25 text-white text-left font-bold text-4xl">
                 IDENTIDAD DE LA INSTITUCIÓN EDUCATIVA
             </div>
         </section>
 
-        <section class="bg-blue-900 container mx-auto px-4 py-8 flex flex-col md:flex-row items-center gap-8">
+        <section class="bg-blue-900 mx-auto px-4 py-8 flex flex-col md:flex-row items-center gap-8">
             <div class="md:w-1/2">
                 <h2 class="text-xl font-semibold text-white mb-4">VISIÓN COMPARTIDA</h2>
                 <p class="text-white">
@@ -63,22 +66,23 @@ import Footer from "../components/Footer.astro";
             </div>
         </section>
 
-        <section class="bg-red-500 py-4">
-            <div class="container mx-auto px-4 text-white text-center font-semibold text-lg">
+        <section class="bg-red-900 py-4 container mx-auto px-25">
+            <div class="container mx-auto px-25 text-white text-right font-bold text-4xl">
                 MISIÓN
             </div>
         </section>
 
-        <section class="bg-blue-900 container mx-auto  px-4 py-8 flex flex-col md:flex-row items-center gap-8">
-            <div class="md:w-1/2">
-                <img src={vision.src} alt="Misión" class="max-w-full w-auto rounded-lg shadow-md" />
-            </div>
-            <div class="md:w-1/2">
-                <h2 class="text-xl font-semibold text-white mb-4">MISIÓN</h2>
-                <p class="text-white">
-                    "Lograr que todas y todos nuestros estudiantes terminen el nivel secundaria, brindando una educación integral, de calidad e inclusiva; desarrollando competencias y modelos educativos, orientados al logro del perfil de egreso de los estudiantes del nivel secundaria en la Educación Básica Regular; con una moderna infraestructura y tecnología, aplicando estrategias didácticas de acuerdo con el contexto, calidad humana, convivencia saludable bajo un estado de derecho, valores, ética personal y profesional fundamentada en los compromisos de gestión escolar."
-                </p>
-            </div>
+            <section class="bg-blue-900 mx-auto  px-4 py-8 flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <img src={vision.src} alt="Misión" class="max-w-full w-auto rounded-lg shadow-md" />
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-xl font-semibold text-white mb-4">MISIÓN</h2>
+                    <p class="text-white">
+                        "Lograr que todas y todos nuestros estudiantes terminen el nivel secundaria, brindando una educación integral, de calidad e inclusiva; desarrollando competencias y modelos educativos, orientados al logro del perfil de egreso de los estudiantes del nivel secundaria en la Educación Básica Regular; con una moderna infraestructura y tecnología, aplicando estrategias didácticas de acuerdo con el contexto, calidad humana, convivencia saludable bajo un estado de derecho, valores, ética personal y profesional fundamentada en los compromisos de gestión escolar."
+                    </p>
+                </div>
+            
         </section>
     </main>
 
@@ -98,7 +102,7 @@ import Footer from "../components/Footer.astro";
                 if (imageName === '/titulo.png') {
                     img.classList.add('max-w-full', 'h-auto');
                 } else if (imageName === '/insignia.png') {
-                    img.classList.add('max-w-sm', 'h-auto');
+                    img.classList.add('max-w-sm', 'h-auto', 'rounded-lg', 'shadow-md');
                 } else if (imageName === '/vision-compartida.jpg' || imageName === '/vision.jpg') {
                     img.classList.add('max-w-full', 'h-auto', 'rounded-lg', 'shadow-md');
                 }
